@@ -1,11 +1,9 @@
 package com.example.jeremy.intercommobileandroid;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import org.java_websocket.WebSocketImpl;
@@ -21,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button bOpenDoor;
     private Button bEcho;
     private Button bConnect;
+    private Button bRing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         bOpenDoor = (Button) findViewById(R.id.bOpenDoor);
         bEcho = (Button) findViewById(R.id.bEcho);
         bConnect = (Button) findViewById(R.id.bConnect);
+        bRing = (Button) findViewById(R.id.bRing);
 
         bOpenDoor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bRing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myWebSocketClient.send("ring");
+            }
+        });
+
+        //First connection
         myWebserverConnect();
     }
 
